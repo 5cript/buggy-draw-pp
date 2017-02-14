@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="buggy-draw" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/buggy-draw" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/buggy-draw" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory=".." />
+		</Compiler>
+		<Linker>
+			<Add option="-lcairo" />
+		</Linker>
+		<Unit filename="../SimpleJSON/parse/jsd.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_array.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_atomic.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_check.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_container.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_convenience.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_core.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_enum.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_fundamental.cpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_fundamental.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_fusion_adapted_struct.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_generic_parser.cpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_generic_parser.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_map.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_object.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_optional.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_options.cpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_options.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_pair.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_renamed.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_set.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_shared_ptr.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_smart_ptr.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_string.cpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_string.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_unique_ptr.hpp" />
+		<Unit filename="../SimpleJSON/parse/jsd_unordered_map.hpp" />
+		<Unit filename="../SimpleJSON/stringify/container_traits.hpp" />
+		<Unit filename="../SimpleJSON/stringify/integer_of_size.hpp" />
+		<Unit filename="../SimpleJSON/stringify/iterator_traits.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_array.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_atomic.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_bidirectional.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_bitset.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_check.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_container.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_convenience.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_core.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_deque.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_enum.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_error.cpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_error.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_extended.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_forward.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_forward_list.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_fundamental.cpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_fundamental.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_fusion_adapted_struct.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_fusion_vector.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_iterator.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_list.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_map.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_mutex.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_object.cpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_object.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_optional.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_options.cpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_options.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_pair.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_pointer.cpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_pointer.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_queue.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_random_access.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_renamed.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_set.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_shared_ptr.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_smart_ptr.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_stack.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_string.cpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_string.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_tuple.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_undefine.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_unique_ptr.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_unordered_map.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_valarray.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_vector.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_void.cpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_void.hpp" />
+		<Unit filename="../SimpleJSON/stringify/jss_weak_ptr.hpp" />
+		<Unit filename="../SimpleJSON/stringify/map_commons.hpp" />
+		<Unit filename="../SimpleJSON/utility/array.cpp" />
+		<Unit filename="../SimpleJSON/utility/array.hpp" />
+		<Unit filename="../SimpleJSON/utility/base64.cpp" />
+		<Unit filename="../SimpleJSON/utility/base64.hpp" />
+		<Unit filename="../SimpleJSON/utility/beauty_stream.cpp" />
+		<Unit filename="../SimpleJSON/utility/beauty_stream.hpp" />
+		<Unit filename="../SimpleJSON/utility/meta_util.hpp" />
+		<Unit filename="../SimpleJSON/utility/object.cpp" />
+		<Unit filename="../SimpleJSON/utility/object.hpp" />
+		<Unit filename="../SimpleJSON/utility/polymorphy.hpp" />
+		<Unit filename="../SimpleJSON/utility/property_tree_probe.hpp" />
+		<Unit filename="../SimpleJSON/utility/rename.hpp" />
+		<Unit filename="../SimpleJSON/utility/tmp_util/fundamental/eval_if.hpp" />
+		<Unit filename="../SimpleJSON/utility/tmp_util/fundamental/identity.hpp" />
+		<Unit filename="../SimpleJSON/utility/tmp_util/fundamental/integral.hpp" />
+		<Unit filename="../SimpleJSON/utility/tmp_util/fundamental/is_same.hpp" />
+		<Unit filename="../SimpleJSON/utility/tmp_util/fundamental/null_type.hpp" />
+		<Unit filename="../SimpleJSON/utility/tmp_util/fundamental/pack.hpp" />
+		<Unit filename="../SimpleJSON/utility/tmp_util/type_of_size.hpp" />
+		<Unit filename="../SimpleJSON/utility/xml_converter.cpp" />
+		<Unit filename="../SimpleJSON/utility/xml_converter.hpp" />
+		<Unit filename="../cairo-wrap/bounding_box.hpp" />
+		<Unit filename="../cairo-wrap/cairo_wrap.hpp" />
+		<Unit filename="../cairo-wrap/color.hpp" />
+		<Unit filename="../cairo-wrap/core.hpp" />
+		<Unit filename="../cairo-wrap/draw_context.cpp" />
+		<Unit filename="../cairo-wrap/draw_context.hpp" />
+		<Unit filename="../cairo-wrap/font.hpp" />
+		<Unit filename="../cairo-wrap/line.cpp" />
+		<Unit filename="../cairo-wrap/line.hpp" />
+		<Unit filename="../cairo-wrap/pen.cpp" />
+		<Unit filename="../cairo-wrap/pen.hpp" />
+		<Unit filename="../cairo-wrap/rectangle.cpp" />
+		<Unit filename="../cairo-wrap/rectangle.hpp" />
+		<Unit filename="../cairo-wrap/round_rectangle.cpp" />
+		<Unit filename="../cairo-wrap/round_rectangle.hpp" />
+		<Unit filename="../cairo-wrap/shape.cpp" />
+		<Unit filename="../cairo-wrap/shape.hpp" />
+		<Unit filename="../cairo-wrap/shapes.hpp" />
+		<Unit filename="../cairo-wrap/surface.cpp" />
+		<Unit filename="../cairo-wrap/surface.hpp" />
+		<Unit filename="../cairo-wrap/text.cpp" />
+		<Unit filename="../cairo-wrap/text.hpp" />
+		<Unit filename="graph_draw.cpp" />
+		<Unit filename="graph_draw.hpp" />
+		<Unit filename="graph_elements/draw_information.cpp" />
+		<Unit filename="graph_elements/draw_information.hpp" />
+		<Unit filename="graph_elements/edge.hpp" />
+		<Unit filename="graph_elements/graph.cpp" />
+		<Unit filename="graph_elements/graph.hpp" />
+		<Unit filename="graph_elements/meta_information.hpp" />
+		<Unit filename="graph_elements/node.cpp" />
+		<Unit filename="graph_elements/node.hpp" />
+		<Unit filename="graph_elements/port.hpp" />
+		<Unit filename="graph_elements/settings.hpp" />
+		<Unit filename="json_convert.hpp" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

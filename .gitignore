@@ -1,0 +1,6 @@
+test.json
+*.png
+*.depend
+*.layout
+bin/Debug/*
+obj/*
