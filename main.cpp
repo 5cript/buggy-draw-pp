@@ -1,12 +1,32 @@
 #include "graph_draw.hpp"
 
-#include <iostream>
-
 #include <boost/property_tree/ptree_fwd.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/id_translator.hpp>
 
+#include <iostream>
+#include <fstream>
+
+void renderGraph(std::string const& fileName);
+
 int main()
+{
+    auto checkFile = [](int i){
+        std::ifstream tester(std::string{"output_"} + std::to_string(i) + ".json", std::ios_base::binary);
+        return tester.good();
+    };
+    for (int i = 0; ; ++i)
+    {
+        if (checkFile(i))
+            renderGraph(std::string{"output_"} + std::to_string(i));
+        else
+            break;
+    }
+
+    return 0;
+}
+
+void renderGraph(std::string const& fileName)
 {
     using namespace Cairo;
     using namespace BuggyDraw;
@@ -14,8 +34,8 @@ int main()
     Graph graph;
     try
     {
-        graph = loadGraphFromFile("almostFactorial.json");
-        //graph = loadGraphFromFile("output_0.json");
+        //graph = loadGraphFromFile("almostFactorial.json");
+        graph = loadGraphFromFile(fileName + ".json");
     }
     catch (boost::property_tree::ptree_bad_path const& exc)
     {
@@ -40,7 +60,5 @@ int main()
 
     render(&drawContext, graph, options);
 
-    surface.saveToFile("hello.png");
-
-    return 0;
+    surface.saveToFile(fileName + ".png");
 }
