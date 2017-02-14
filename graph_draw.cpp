@@ -6,8 +6,70 @@ namespace BuggyDraw
 {
     using namespace Cairo;
 //#####################################################################################################################
+    BoundingBox calculateAtomicNodeBounds(Node const& node, GraphRenderOptions const& options)
+    {
+        Surface dummySurface(0, 0);
+        DrawContext dummyContext(&dummySurface);
+        auto box = Text(&dummyContext, 0, 0, node.componentId, options.nodeMainFont).calculateBounds(options.textPen);
+
+        std::string inputs;
+        std::string outputs;
+        for (auto const& port : node.ports)
+        {
+            if (port.kind == "input")
+                inputs = inputs + port.type + "   ";
+            if (port.kind == "output")
+                outputs = outputs + port.type + "   ";
+        }
+        if (!inputs.empty())
+            inputs = inputs.substr(0, inputs.length() - 3);
+        if (!outputs.empty())
+            outputs = outputs.substr(0, outputs.length() - 3);
+
+
+        auto inTypeBox = Text(&dummyContext, 0, 0, inputs, options.nodeInputTypeFont).calculateBounds(options.inputTypesPen);
+        auto outTypeBox = Text(&dummyContext, 0, 0, outputs, options.nodeOutputTypeFont).calculateBounds(options.outputTypesPen);
+        auto idBox = Text(&dummyContext, 0, 0, node.id, options.nodeIdFont).calculateBounds(options.idPen);
+
+        if (!inputs.empty())
+            box.y2 += inTypeBox.getHeight() + 5;
+        if (!outputs.empty())
+            box.y2 += outTypeBox.getHeight() + 5;
+        box.y2 += idBox.getHeight() + 5;
+
+        double minWidth =
+            std::max(std::max(std::max (box.getWidth(), inTypeBox.getWidth()),
+                     outTypeBox.getWidth()), idBox.getWidth());
+
+        box.setWidth (minWidth);
+
+        box.x2 += options.internalNodeXPadding * 2;
+        box.y2 += options.internalNodeYPadding * 2;
+
+        return box;
+    }
+//---------------------------------------------------------------------------------------------------------------------
     void renderAtomic(DrawContext* ctx, Node const& node, GraphRenderOptions const& options)
     {
+        Surface dummySurface(0, 0);
+        DrawContext dummyContext(&dummySurface);
+        auto totalBounds = calculateAtomicNodeBounds(node, options);
+
+        std::string inputs;
+        std::string outputs;
+        for (auto const& port : node.ports)
+        {
+            if (port.kind == "input")
+                inputs = inputs + port.type + "   ";
+            if (port.kind == "output")
+                outputs = outputs + port.type + "   ";
+        }
+        if (!inputs.empty())
+            inputs = inputs.substr(0, inputs.length() - 3);
+        if (!outputs.empty())
+            outputs = outputs.substr(0, outputs.length() - 3);
+
+
         Rectangle rect(
             ctx,
             node.drawInformation.get().size.x,
@@ -16,16 +78,47 @@ namespace BuggyDraw
             node.drawInformation.get().size.getHeight()
         );
 
-        Text caption(
+        Text inputText(
             ctx,
             node.drawInformation.get().size.x + options.internalNodeXPadding,
             node.drawInformation.get().size.y + options.internalNodeYPadding,
+            inputs,
+            options.nodeInputTypeFont
+        );
+        auto inputTextBounds = inputText.calculateBounds(options.inputTypesPen);
+
+        auto captionBounds = Text(&dummyContext, 0, 0, node.componentId, options.nodeMainFont).calculateBounds(options.textPen);
+        Text caption(
+            ctx,
+            node.drawInformation.get().size.x + totalBounds.getWidth() / 2 - captionBounds.getWidth() / 2 + options.internalNodeXPadding,
+            node.drawInformation.get().size.y + options.internalNodeYPadding + inputTextBounds.getHeight() + 5,
             node.componentId,
             options.nodeMainFont
         );
 
+        Text id(
+            ctx,
+            node.drawInformation.get().size.x + options.internalNodeXPadding,
+            node.drawInformation.get().size.y + options.internalNodeYPadding + inputTextBounds.getHeight() + 5 + captionBounds.getHeight() + 5,
+            std::string{"("} + node.id + ")",
+            options.nodeIdFont
+        );
+        auto idBounds = id.calculateBounds(options.idPen);
+
+        auto outputTypeBounds = Text(&dummyContext, 0, 0, node.componentId, options.nodeOutputTypeFont).calculateBounds(options.outputTypesPen);
+        Text outputText(
+            ctx,
+            node.drawInformation.get().size.x + options.internalNodeXPadding,
+            node.drawInformation.get().size.y + totalBounds.getHeight() - outputTypeBounds.getHeight(),
+            outputs,
+            options.nodeOutputTypeFont
+        );
+
         rect.draw(options.nodeStrokePen, options.nodeFillPen);
+        inputText.draw(options.inputTypesPen);
         caption.draw(options.textPen);
+        id.draw(options.idPen);
+        outputText.draw(options.outputTypesPen);
     }
 //---------------------------------------------------------------------------------------------------------------------
     void renderNode(DrawContext* ctx, Node const& node, GraphRenderOptions const& options)
@@ -41,17 +134,6 @@ namespace BuggyDraw
                 renderNode(ctx, node, options);
             }
         }
-    }
-//---------------------------------------------------------------------------------------------------------------------
-    BoundingBox calculateAtomicNodeBounds(Node const& node, GraphRenderOptions const& options)
-    {
-        Surface dummySurface(0, 0);
-        DrawContext dummyContext(&dummySurface);
-        auto box = Text(&dummyContext, 0, 0, node.componentId, options.nodeMainFont).calculateBounds(options.textPen);
-        box.x2 += options.internalNodeXPadding * 2;
-        box.y2 += options.internalNodeYPadding * 2;
-
-        return box;
     }
 //---------------------------------------------------------------------------------------------------------------------
     void estimateSize(Graph& graph, Graph* parent, GraphRenderOptions const& options)
@@ -211,38 +293,11 @@ namespace BuggyDraw
         }
     }
 //---------------------------------------------------------------------------------------------------------------------
-    void finalizeSizeEstimation(Graph& current, Graph& parent, GraphRenderOptions const& options)
-    {
-        double xOffset = parent.drawInformation.get().size.x + options.compoundMarginX;
-        double yOffset = parent.drawInformation.get().size.y + options.compoundMarginY;
-
-        //if (isAtomic(current))
-        //  current.drawInformation.get().size.move(xOffset, yOffset);
-
-        if (!current.nodes)
-            return;
-        for (auto& node : current.nodes.get())
-        {
-            finalizeSizeEstimation(node, current, options);
-        }
-    }
-//---------------------------------------------------------------------------------------------------------------------
-    void finalizeSizeEstimation(Graph& root, GraphRenderOptions const& options)
-    {
-        if (!root.nodes)
-            return;
-        for (auto& node : root.nodes.get())
-        {
-            finalizeSizeEstimation(node, root, options);
-        }
-    }
-//---------------------------------------------------------------------------------------------------------------------
     void render(DrawContext* ctx, Graph const& graph, GraphRenderOptions const& options)
     {
         auto mutableGraph = graph;
         initializeDrawInformation(mutableGraph);
         estimateSize(mutableGraph, nullptr, options);
-        //finalizeSizeEstimation(mutableGraph, options);
 
         saveGraphToFile(mutableGraph, "test.json");
 

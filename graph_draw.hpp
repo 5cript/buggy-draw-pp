@@ -9,13 +9,19 @@ namespace BuggyDraw
     {
         double minXNodePadding = 50.;
         double minYNodePadding = 20.;
-        double internalNodeXPadding = 10.;
-        double internalNodeYPadding = 10.;
+        double internalNodeXPadding = 8.;
+        double internalNodeYPadding = 8.;
         double compoundMarginX = 5.;
         double compoundMarginY = 5.;
 
         Cairo::Font nodeMainFont;
-        Cairo::Pen textPen;
+        Cairo::Font nodeInputTypeFont;
+        Cairo::Font nodeOutputTypeFont;
+        Cairo::Font nodeIdFont;
+        Cairo::Pen textPen = Cairo::Colors::Black;
+        Cairo::Pen inputTypesPen = Cairo::Colors::Red;
+        Cairo::Pen outputTypesPen = Cairo::Colors::Red;
+        Cairo::Pen idPen = Cairo::Colors::Blue;
         Cairo::Pen nodeFillPen = Cairo::Colors::White;
         Cairo::Pen nodeStrokePen = {5, Cairo::Colors::Black};
     };
@@ -25,5 +31,6 @@ namespace BuggyDraw
 
     };
 
+    void estimateSize(Graph& graph, Graph* parent, GraphRenderOptions const& options);
     void render(Cairo::DrawContext* ctx, Graph const& graph, GraphRenderOptions const& options);
 }
