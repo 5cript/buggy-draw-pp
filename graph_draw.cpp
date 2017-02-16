@@ -1,10 +1,19 @@
 #include "graph_draw.hpp"
+#include "buggy-graphtools-pp/graph-basics.hpp"
 
 #include <set>
 
-namespace BuggyDraw
+namespace Buggy
 {
+//#####################################################################################################################
     using namespace Cairo;
+//#####################################################################################################################
+    void initializeDrawInformation(Node& node)
+    {
+        forAllNodes(node, [](Node& n){
+            n.drawInformation = DrawInformation{};
+        });
+    }
 //#####################################################################################################################
     BoundingBox calculateAtomicNodeBounds(Node const& node, GraphRenderOptions const& options)
     {
@@ -103,7 +112,7 @@ namespace BuggyDraw
             std::string{"("} + node.id + ")",
             options.nodeIdFont
         );
-        auto idBounds = id.calculateBounds(options.idPen);
+        //auto idBounds = id.calculateBounds(options.idPen);
 
         auto outputTypeBounds = Text(&dummyContext, 0, 0, node.componentId, options.nodeOutputTypeFont).calculateBounds(options.outputTypesPen);
         Text outputText(

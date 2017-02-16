@@ -1,9 +1,9 @@
 #pragma once
 
 #include "cairo-wrap/bounding_box.hpp"
-#include "../json_convert.hpp"
+#include "buggy-graph-pp/json_convert.hpp"
 
-namespace BuggyDraw
+namespace Buggy
 {
     struct DrawInformation
     {

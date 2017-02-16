@@ -1,6 +1,6 @@
 #include "draw_information.hpp"
 
-namespace BuggyDraw
+namespace Buggy
 {
 //#####################################################################################################################
     std::ostream& DrawInformation::stringify(std::ostream& stream, JSON::StringificationOptions options) const

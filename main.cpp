@@ -29,7 +29,7 @@ int main()
 void renderGraph(std::string const& fileName)
 {
     using namespace Cairo;
-    using namespace BuggyDraw;
+    using namespace Buggy;
 
     Graph graph;
     try

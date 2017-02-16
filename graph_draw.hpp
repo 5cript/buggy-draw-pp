@@ -1,9 +1,9 @@
 #pragma once
 
-#include "graph_elements/graph.hpp"
+#include "buggy-graph-pp/graph.hpp"
 #include "cairo-wrap/cairo_wrap.hpp"
 
-namespace BuggyDraw
+namespace Buggy
 {
     struct GraphRenderOptions
     {
@@ -33,4 +33,5 @@ namespace BuggyDraw
 
     void estimateSize(Graph& graph, Graph* parent, GraphRenderOptions const& options);
     void render(Cairo::DrawContext* ctx, Graph const& graph, GraphRenderOptions const& options);
+    void initializeDrawInformation(Node& node);
 }

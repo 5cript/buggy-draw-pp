@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="buggy-draw" />
+		<Option title="buggy-draw-pp" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -31,6 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add option="-DGRAPH_DRAW_INFORMATION" />
 			<Add directory=".." />
 		</Compiler>
 		<Linker>
@@ -138,6 +139,17 @@
 		<Unit filename="../SimpleJSON/utility/tmp_util/type_of_size.hpp" />
 		<Unit filename="../SimpleJSON/utility/xml_converter.cpp" />
 		<Unit filename="../SimpleJSON/utility/xml_converter.hpp" />
+		<Unit filename="../buggy-graph-pp/edge.hpp" />
+		<Unit filename="../buggy-graph-pp/graph.cpp" />
+		<Unit filename="../buggy-graph-pp/graph.hpp" />
+		<Unit filename="../buggy-graph-pp/json_convert.hpp" />
+		<Unit filename="../buggy-graph-pp/meta_information.hpp" />
+		<Unit filename="../buggy-graph-pp/node.cpp" />
+		<Unit filename="../buggy-graph-pp/node.hpp" />
+		<Unit filename="../buggy-graph-pp/port.hpp" />
+		<Unit filename="../buggy-graph-pp/settings.hpp" />
+		<Unit filename="../buggy-graphtools-pp/graph-basics.cpp" />
+		<Unit filename="../buggy-graphtools-pp/graph-basics.hpp" />
 		<Unit filename="../cairo-wrap/bounding_box.hpp" />
 		<Unit filename="../cairo-wrap/cairo_wrap.hpp" />
 		<Unit filename="../cairo-wrap/color.hpp" />
@@ -160,19 +172,10 @@
 		<Unit filename="../cairo-wrap/surface.hpp" />
 		<Unit filename="../cairo-wrap/text.cpp" />
 		<Unit filename="../cairo-wrap/text.hpp" />
+		<Unit filename="draw_information.cpp" />
+		<Unit filename="draw_information.hpp" />
 		<Unit filename="graph_draw.cpp" />
 		<Unit filename="graph_draw.hpp" />
-		<Unit filename="graph_elements/draw_information.cpp" />
-		<Unit filename="graph_elements/draw_information.hpp" />
-		<Unit filename="graph_elements/edge.hpp" />
-		<Unit filename="graph_elements/graph.cpp" />
-		<Unit filename="graph_elements/graph.hpp" />
-		<Unit filename="graph_elements/meta_information.hpp" />
-		<Unit filename="graph_elements/node.cpp" />
-		<Unit filename="graph_elements/node.hpp" />
-		<Unit filename="graph_elements/port.hpp" />
-		<Unit filename="graph_elements/settings.hpp" />
-		<Unit filename="json_convert.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<envvars />
