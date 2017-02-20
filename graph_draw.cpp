@@ -2,6 +2,7 @@
 #include "buggy-graphtools-pp/graph-basics.hpp"
 
 #include <set>
+#include <algorithm>
 
 namespace Buggy
 {
@@ -147,6 +148,13 @@ namespace Buggy
 //---------------------------------------------------------------------------------------------------------------------
     void estimateSize(Graph& graph, Graph* parent, GraphRenderOptions const& options)
     {
+        struct LayerSetSort
+        {
+            bool operator()(Node* lhs, Node* rhs) {
+                return std::lexicographical_compare(std::begin(lhs->id), std::end(lhs->id), std::begin(rhs->id), std::end(rhs->id));
+            }
+        };
+
         if (!parent)
             graph.drawInformation.get().size.move(0, 0);
         else
@@ -164,7 +172,7 @@ namespace Buggy
         else
         {
             // is compound
-            std::vector <std::set <Node*>> nodeLayers;
+            std::vector <std::set <Node*, LayerSetSort>> nodeLayers;
 
             auto insertNodeToLayer = [&](Node* node, int layer)
             {
